@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            textBox1 = new TextBox();
+            displayTextBox = new TextBox();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -49,19 +49,19 @@
             button17 = new Button();
             SuspendLayout();
             // 
-            // textBox1
+            // displayTextBox
             // 
-            textBox1.BackColor = SystemColors.ControlLightLight;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(12, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(383, 107);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "0";
-            textBox1.TextAlign = HorizontalAlignment.Right;
+            displayTextBox.BackColor = SystemColors.ControlLightLight;
+            displayTextBox.BorderStyle = BorderStyle.FixedSingle;
+            displayTextBox.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            displayTextBox.Location = new Point(12, 12);
+            displayTextBox.Multiline = true;
+            displayTextBox.Name = "displayTextBox";
+            displayTextBox.ReadOnly = true;
+            displayTextBox.Size = new Size(383, 107);
+            displayTextBox.TabIndex = 0;
+            displayTextBox.Text = "0";
+            displayTextBox.TextAlign = HorizontalAlignment.Right;
             // 
             // button1
             // 
@@ -73,6 +73,7 @@
             button1.TabIndex = 1;
             button1.Text = "7";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += digits;
             // 
             // button2
             // 
@@ -84,6 +85,7 @@
             button2.TabIndex = 1;
             button2.Text = "8";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += digits;
             // 
             // button3
             // 
@@ -95,6 +97,7 @@
             button3.TabIndex = 1;
             button3.Text = "9";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += digits;
             // 
             // button4
             // 
@@ -106,6 +109,7 @@
             button4.TabIndex = 1;
             button4.Text = "4";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += digits;
             // 
             // button5
             // 
@@ -117,6 +121,7 @@
             button5.TabIndex = 1;
             button5.Text = "5";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += digits;
             // 
             // button6
             // 
@@ -128,6 +133,7 @@
             button6.TabIndex = 1;
             button6.Text = "6";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += digits;
             // 
             // button7
             // 
@@ -139,6 +145,7 @@
             button7.TabIndex = 1;
             button7.Text = "1";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += digits;
             // 
             // button8
             // 
@@ -150,6 +157,7 @@
             button8.TabIndex = 1;
             button8.Text = "2";
             button8.UseVisualStyleBackColor = false;
+            button8.Click += digits;
             // 
             // button9
             // 
@@ -161,6 +169,7 @@
             button9.TabIndex = 1;
             button9.Text = "3";
             button9.UseVisualStyleBackColor = false;
+            button9.Click += digits;
             // 
             // button10
             // 
@@ -172,6 +181,7 @@
             button10.TabIndex = 1;
             button10.Text = ".";
             button10.UseVisualStyleBackColor = false;
+            button10.Click += digits;
             // 
             // button11
             // 
@@ -183,6 +193,7 @@
             button11.TabIndex = 1;
             button11.Text = "0";
             button11.UseVisualStyleBackColor = false;
+            button11.Click += digits;
             // 
             // button12
             // 
@@ -273,7 +284,7 @@
             Controls.Add(button7);
             Controls.Add(button4);
             Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(displayTextBox);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Form1";
@@ -285,7 +296,7 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox displayTextBox;
         private Button button1;
         private Button button2;
         private Button button3;
