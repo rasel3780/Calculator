@@ -73,7 +73,7 @@
             button1.TabIndex = 1;
             button1.Text = "7";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += digits;
+            button1.Click += digits_click;
             // 
             // button2
             // 
@@ -85,7 +85,7 @@
             button2.TabIndex = 1;
             button2.Text = "8";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += digits;
+            button2.Click += digits_click;
             // 
             // button3
             // 
@@ -97,7 +97,7 @@
             button3.TabIndex = 1;
             button3.Text = "9";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += digits;
+            button3.Click += digits_click;
             // 
             // button4
             // 
@@ -109,7 +109,7 @@
             button4.TabIndex = 1;
             button4.Text = "4";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += digits;
+            button4.Click += digits_click;
             // 
             // button5
             // 
@@ -121,7 +121,7 @@
             button5.TabIndex = 1;
             button5.Text = "5";
             button5.UseVisualStyleBackColor = false;
-            button5.Click += digits;
+            button5.Click += digits_click;
             // 
             // button6
             // 
@@ -133,7 +133,7 @@
             button6.TabIndex = 1;
             button6.Text = "6";
             button6.UseVisualStyleBackColor = false;
-            button6.Click += digits;
+            button6.Click += digits_click;
             // 
             // button7
             // 
@@ -145,7 +145,7 @@
             button7.TabIndex = 1;
             button7.Text = "1";
             button7.UseVisualStyleBackColor = false;
-            button7.Click += digits;
+            button7.Click += digits_click;
             // 
             // button8
             // 
@@ -157,7 +157,7 @@
             button8.TabIndex = 1;
             button8.Text = "2";
             button8.UseVisualStyleBackColor = false;
-            button8.Click += digits;
+            button8.Click += digits_click;
             // 
             // button9
             // 
@@ -169,7 +169,7 @@
             button9.TabIndex = 1;
             button9.Text = "3";
             button9.UseVisualStyleBackColor = false;
-            button9.Click += digits;
+            button9.Click += digits_click;
             // 
             // button10
             // 
@@ -181,7 +181,7 @@
             button10.TabIndex = 1;
             button10.Text = ".";
             button10.UseVisualStyleBackColor = false;
-            button10.Click += digits;
+            button10.Click += digits_click;
             // 
             // button11
             // 
@@ -193,7 +193,7 @@
             button11.TabIndex = 1;
             button11.Text = "0";
             button11.UseVisualStyleBackColor = false;
-            button11.Click += digits;
+            button11.Click += digits_click;
             // 
             // button12
             // 
@@ -205,6 +205,7 @@
             button12.TabIndex = 1;
             button12.Text = "+";
             button12.UseVisualStyleBackColor = false;
+            button12.Click += operator_click;
             // 
             // button13
             // 
@@ -216,6 +217,7 @@
             button13.TabIndex = 1;
             button13.Text = "x";
             button13.UseVisualStyleBackColor = false;
+            button13.Click += operator_click;
             // 
             // button14
             // 
@@ -227,6 +229,7 @@
             button14.Size = new Size(64, 48);
             button14.TabIndex = 1;
             button14.UseVisualStyleBackColor = false;
+            button14.Click += operator_click;
             // 
             // button15
             // 
@@ -238,6 +241,7 @@
             button15.TabIndex = 1;
             button15.Text = "/";
             button15.UseVisualStyleBackColor = false;
+            button15.Click += operator_click;
             // 
             // button16
             // 
@@ -266,30 +270,33 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(407, 450);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(406, 429);
             Controls.Add(button16);
+            Controls.Add(displayTextBox);
             Controls.Add(button9);
-            Controls.Add(button15);
-            Controls.Add(button14);
-            Controls.Add(button6);
-            Controls.Add(button3);
-            Controls.Add(button11);
-            Controls.Add(button17);
-            Controls.Add(button13);
             Controls.Add(button8);
+            Controls.Add(button1);
+            Controls.Add(button13);
+            Controls.Add(button15);
             Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button17);
+            Controls.Add(button14);
             Controls.Add(button12);
+            Controls.Add(button7);
+            Controls.Add(button11);
+            Controls.Add(button6);
             Controls.Add(button10);
             Controls.Add(button2);
-            Controls.Add(button7);
-            Controls.Add(button4);
-            Controls.Add(button1);
-            Controls.Add(displayTextBox);
+            Controls.Add(button3);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculator";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

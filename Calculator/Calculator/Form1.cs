@@ -8,12 +8,44 @@ namespace Calculator
         }
 
         string input = "";
+        string operations;
 
-        private void digits(object sender, EventArgs e)
+        private void digits_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            input += btn.Text;
-            displayTextBox.Text  = input;
+
+            if(btn.Text==".")
+            {
+                if(!displayTextBox.Text.Contains("."))
+                {
+                    input += btn.Text;
+                }
+            }
+            else
+            {
+                input += btn.Text;
+            }
+           
+            displayTextBox.Text = input;
         }
+
+        private void operator_click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
+
+       
     }
 }
