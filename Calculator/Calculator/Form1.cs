@@ -3,7 +3,6 @@ namespace Calculator
     public partial class Form1 : Form
     {
 
-        string input = string.Empty;
         string operation = "";
         double result = 0;
         bool performed = false;
@@ -30,71 +29,76 @@ namespace Calculator
             {
                 if (!displayTextBox.Text.Contains("."))
                 {
-                    input += btn.Text;
+                    displayTextBox.Text += btn.Text;
                 }
             }
             else
             {
-                input += btn.Text;
+                displayTextBox.Text += btn.Text;
             }
-
-            displayTextBox.Text = input;
         }
 
         private void operator_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
+            if(displayTextBox.Text == "0" && btn.Text=="-")
+            {
+                displayTextBox.Clear() ;
+                displayTextBox.Text += btn.Text;
+            }
+            
+            else
+            {
+                operation = btn.Text;
+                result = Convert.ToDouble(displayTextBox.Text);
+                operation_lbl.Text = result + " " + operation;
 
-            operation = btn.Text;
-            result = Convert.ToDouble(displayTextBox.Text);
-            operation_lbl.Text = result + " " + operation;
-
-
-            performed = true;
-
-
+                performed = true;
+            }
+            
 
         }
 
         private void Calculation()
         {
-            double currentInput = Convert.ToDouble(input);
+            double currentInput = Convert.ToDouble(displayTextBox.Text);
 
             if (operation == "+")
             {
-                result += currentInput;
+                displayTextBox.Text = (result + currentInput).ToString();
             }
             else if (operation == "-")
             {
-                result -= currentInput;
+                displayTextBox.Text = (result - currentInput).ToString();
             }
             else if (operation == "x")
             {
-                result *= currentInput;
+                displayTextBox.Text = (result * currentInput).ToString();
             }
             else
             {
-                result /= currentInput;
+                displayTextBox.Text = (result / currentInput).ToString();
             }
 
-            displayTextBox.Text = result.ToString();
-            input = string.Empty;
+            //displayTextBox.Text = result.ToString();
+            
         }
 
         private void equalBtn_Click(object sender, EventArgs e)
         {
             Calculation();
+            result = 0;
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
 
-            int txtLength = input.Length;
+            int txtLength = displayTextBox.Text.Length;
 
             if (txtLength > 0)
             {
-                input = input.Substring(0, txtLength - 1);
-                displayTextBox.Text = input;
+                displayTextBox.Text = displayTextBox.Text.Substring(0, txtLength - 1);
+                
             }
 
             if (displayTextBox.Text == "")
