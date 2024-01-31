@@ -4,8 +4,9 @@ namespace Calculator
     {
 
         string input = string.Empty;
-        string operations;
+        string operation = "";
         double result = 0;
+        bool performed = false;
 
         public Form1()
         {
@@ -16,6 +17,15 @@ namespace Calculator
         {
             Button btn = sender as Button;
 
+
+            if (displayTextBox.Text == "0" || performed)
+            {
+                displayTextBox.Clear();
+            }
+
+            performed = false;
+
+            //decimal point validation to prevent more than 1 decimal point input
             if (btn.Text == ".")
             {
                 if (!displayTextBox.Text.Contains("."))
@@ -33,22 +43,32 @@ namespace Calculator
 
         private void operator_click(object sender, EventArgs e)
         {
-            Calculation();
+            Button btn = sender as Button;
+
+            operation = btn.Text;
+            result = Convert.ToDouble(displayTextBox.Text);
+            operation_lbl.Text = result + " " + operation;
+
+
+            performed = true;
+
+
+
         }
 
         private void Calculation()
         {
             double currentInput = Convert.ToDouble(input);
 
-            if (operations == "+")
+            if (operation == "+")
             {
                 result += currentInput;
             }
-            else if (operations == "-")
+            else if (operation == "-")
             {
                 result -= currentInput;
             }
-            else if (operations == "x")
+            else if (operation == "x")
             {
                 result *= currentInput;
             }
@@ -56,6 +76,7 @@ namespace Calculator
             {
                 result /= currentInput;
             }
+
             displayTextBox.Text = result.ToString();
             input = string.Empty;
         }
@@ -67,13 +88,16 @@ namespace Calculator
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            
-            int txtLength = displayTextBox.Text.Length;
-            if(txtLength > 0) 
+
+            int txtLength = input.Length;
+
+            if (txtLength > 0)
             {
-                displayTextBox.Text = displayTextBox.Text.Remove(txtLength - 1, 1);
+                input = input.Substring(0, txtLength - 1);
+                displayTextBox.Text = input;
             }
-            if(displayTextBox.Text == "")
+
+            if (displayTextBox.Text == "")
             {
                 displayTextBox.Text = "0";
             }
@@ -83,7 +107,7 @@ namespace Calculator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //displayTextBox.Text = "0";
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -91,6 +115,15 @@ namespace Calculator
             Application.Exit();
         }
 
-        
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            displayTextBox.Text = "0";
+            result = 0;
+        }
+
+        private void clearEntryBtn_Click(object sender, EventArgs e)
+        {
+            displayTextBox.Text = "0";
+        }
     }
 }

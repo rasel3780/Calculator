@@ -47,6 +47,9 @@
             button15 = new Button();
             equalBtn = new Button();
             deleteBtn = new Button();
+            operation_lbl = new Label();
+            clearBtn = new Button();
+            clearEntryBtn = new Button();
             SuspendLayout();
             // 
             // displayTextBox
@@ -199,7 +202,7 @@
             // 
             button12.BackColor = Color.GhostWhite;
             button12.Font = new Font("Microsoft YaHei UI", 12F);
-            button12.Location = new Point(266, 141);
+            button12.Location = new Point(260, 141);
             button12.Name = "button12";
             button12.Size = new Size(64, 48);
             button12.TabIndex = 1;
@@ -211,7 +214,7 @@
             // 
             button13.BackColor = Color.GhostWhite;
             button13.Font = new Font("Microsoft YaHei UI", 12F);
-            button13.Location = new Point(266, 206);
+            button13.Location = new Point(260, 206);
             button13.Name = "button13";
             button13.Size = new Size(64, 48);
             button13.TabIndex = 1;
@@ -223,7 +226,7 @@
             // 
             button14.BackColor = Color.GhostWhite;
             button14.Font = new Font("Microsoft YaHei UI", 12F);
-            button14.Location = new Point(336, 141);
+            button14.Location = new Point(330, 141);
             button14.Name = "button14";
             button14.Size = new Size(64, 48);
             button14.TabIndex = 1;
@@ -235,7 +238,7 @@
             // 
             button15.BackColor = Color.GhostWhite;
             button15.Font = new Font("Microsoft YaHei UI", 12F);
-            button15.Location = new Point(336, 206);
+            button15.Location = new Point(330, 206);
             button15.Name = "button15";
             button15.Size = new Size(64, 48);
             button15.TabIndex = 1;
@@ -260,12 +263,40 @@
             deleteBtn.BackColor = Color.GhostWhite;
             deleteBtn.Font = new Font("Microsoft YaHei UI", 12F);
             deleteBtn.Image = (Image)resources.GetObject("deleteBtn.Image");
-            deleteBtn.Location = new Point(266, 272);
+            deleteBtn.Location = new Point(330, 272);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(64, 48);
             deleteBtn.TabIndex = 1;
             deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
+            // 
+            // operation_lbl
+            // 
+            operation_lbl.AutoSize = true;
+            operation_lbl.Location = new Point(16, 15);
+            operation_lbl.Name = "operation_lbl";
+            operation_lbl.Size = new Size(0, 20);
+            operation_lbl.TabIndex = 2;
+            // 
+            // clearBtn
+            // 
+            clearBtn.Location = new Point(260, 339);
+            clearBtn.Name = "clearBtn";
+            clearBtn.Size = new Size(64, 48);
+            clearBtn.TabIndex = 3;
+            clearBtn.Text = "C";
+            clearBtn.UseVisualStyleBackColor = true;
+            clearBtn.Click += clearBtn_Click;
+            // 
+            // clearEntryBtn
+            // 
+            clearEntryBtn.Location = new Point(330, 339);
+            clearEntryBtn.Name = "clearEntryBtn";
+            clearEntryBtn.Size = new Size(64, 48);
+            clearEntryBtn.TabIndex = 3;
+            clearEntryBtn.Text = "CE";
+            clearEntryBtn.UseVisualStyleBackColor = true;
+            clearEntryBtn.Click += clearEntryBtn_Click;
             // 
             // Form1
             // 
@@ -274,6 +305,9 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(406, 429);
+            Controls.Add(clearEntryBtn);
+            Controls.Add(clearBtn);
+            Controls.Add(operation_lbl);
             Controls.Add(equalBtn);
             Controls.Add(displayTextBox);
             Controls.Add(button9);
@@ -323,5 +357,8 @@
         private Button button15;
         private Button equalBtn;
         private Button deleteBtn;
+        private Label operation_lbl;
+        private Button clearBtn;
+        private Button clearEntryBtn;
     }
 }
