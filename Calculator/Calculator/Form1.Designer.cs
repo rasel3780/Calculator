@@ -45,8 +45,8 @@
             button13 = new Button();
             button14 = new Button();
             button15 = new Button();
-            button16 = new Button();
-            button17 = new Button();
+            equalBtn = new Button();
+            deleteBtn = new Button();
             SuspendLayout();
             // 
             // displayTextBox
@@ -223,11 +223,11 @@
             // 
             button14.BackColor = Color.GhostWhite;
             button14.Font = new Font("Microsoft YaHei UI", 12F);
-            button14.Image = (Image)resources.GetObject("button14.Image");
             button14.Location = new Point(336, 141);
             button14.Name = "button14";
             button14.Size = new Size(64, 48);
             button14.TabIndex = 1;
+            button14.Text = "-";
             button14.UseVisualStyleBackColor = false;
             button14.Click += operator_click;
             // 
@@ -243,27 +243,29 @@
             button15.UseVisualStyleBackColor = false;
             button15.Click += operator_click;
             // 
-            // button16
+            // equalBtn
             // 
-            button16.BackColor = Color.GhostWhite;
-            button16.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button16.Location = new Point(180, 339);
-            button16.Name = "button16";
-            button16.Size = new Size(64, 48);
-            button16.TabIndex = 1;
-            button16.Text = "=";
-            button16.UseVisualStyleBackColor = false;
+            equalBtn.BackColor = Color.GhostWhite;
+            equalBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            equalBtn.Location = new Point(180, 339);
+            equalBtn.Name = "equalBtn";
+            equalBtn.Size = new Size(64, 48);
+            equalBtn.TabIndex = 1;
+            equalBtn.Text = "=";
+            equalBtn.UseVisualStyleBackColor = false;
+            equalBtn.Click += equalBtn_Click;
             // 
-            // button17
+            // deleteBtn
             // 
-            button17.BackColor = Color.GhostWhite;
-            button17.Font = new Font("Microsoft YaHei UI", 12F);
-            button17.Image = (Image)resources.GetObject("button17.Image");
-            button17.Location = new Point(266, 272);
-            button17.Name = "button17";
-            button17.Size = new Size(64, 48);
-            button17.TabIndex = 1;
-            button17.UseVisualStyleBackColor = false;
+            deleteBtn.BackColor = Color.GhostWhite;
+            deleteBtn.Font = new Font("Microsoft YaHei UI", 12F);
+            deleteBtn.Image = (Image)resources.GetObject("deleteBtn.Image");
+            deleteBtn.Location = new Point(266, 272);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(64, 48);
+            deleteBtn.TabIndex = 1;
+            deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // Form1
             // 
@@ -272,7 +274,7 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(406, 429);
-            Controls.Add(button16);
+            Controls.Add(equalBtn);
             Controls.Add(displayTextBox);
             Controls.Add(button9);
             Controls.Add(button8);
@@ -281,7 +283,7 @@
             Controls.Add(button15);
             Controls.Add(button5);
             Controls.Add(button4);
-            Controls.Add(button17);
+            Controls.Add(deleteBtn);
             Controls.Add(button14);
             Controls.Add(button12);
             Controls.Add(button7);
@@ -319,7 +321,7 @@
         private Button button13;
         private Button button14;
         private Button button15;
-        private Button button16;
-        private Button button17;
+        private Button equalBtn;
+        private Button deleteBtn;
     }
 }
