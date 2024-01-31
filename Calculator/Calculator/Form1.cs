@@ -7,12 +7,14 @@ namespace Calculator
         double result = 0;
         bool performed = false;
         bool dividedByZero = false;
+        
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        #region Digits
         private void digits_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -27,7 +29,6 @@ namespace Calculator
                 displayTextBox.Clear();
             }
 
-            performed = false;
 
             //decimal point validation to prevent more than 1 decimal point input
             if (btn.Text == ".")
@@ -35,14 +36,19 @@ namespace Calculator
                 if (!displayTextBox.Text.Contains("."))
                 {
                     displayTextBox.Text += btn.Text;
+                    operation_lbl.Text += displayTextBox.Text;
                 }
             }
+            //concating digits
             else
             {
                 displayTextBox.Text += btn.Text;
+                operation_lbl.Text += displayTextBox.Text;
             }
         }
+        #endregion
 
+        #region Operators
         private void operator_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -58,7 +64,7 @@ namespace Calculator
             if(displayTextBox.Text == "0" && btn.Text=="-")
             {
                 displayTextBox.Clear() ;
-                displayTextBox.Text += btn.Text;  
+                displayTextBox.Text += btn.Text;
             }
             
             
@@ -66,15 +72,15 @@ namespace Calculator
             {
                 operation = btn.Text;
                 result = Convert.ToDouble(displayTextBox.Text);
-                
-                //operation_lbl.Text = result + " " + operation;
-
                 performed = true;
             }
-            
+            operation_lbl.Text += btn.Text;
+
 
         }
+        #endregion
 
+        #region Calculation
         private void Calculation()
         {
             try
@@ -84,54 +90,63 @@ namespace Calculator
                 if (operation == "+")
                 {
                     displayTextBox.Text = (result + currentInput).ToString();
+                    
                 }
                 else if (operation == "-")
                 {
                     displayTextBox.Text = (result - currentInput).ToString();
+                    
                 }
                 else if (operation == "x")
                 {
                     displayTextBox.Text = (result * currentInput).ToString();
+                   
                 }
                 else
-                {
+                {   
+                    //checking if dividing by zero 
                     if(currentInput==0)
                     {
                         displayTextBox.Text = "Can't divide by zero";
+                        operation_lbl.Text = "";
                         dividedByZero = true;
                     }
                     else
                     {
                         displayTextBox.Text = (result / currentInput).ToString();
+                       
                     }
                     
                 }
+                operation_lbl.Text += "=";
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-
-            //displayTextBox.Text = result.ToString();
-            
         }
+        #endregion
 
         private void equalBtn_Click(object sender, EventArgs e)
         {
-            Calculation();
-            result = 0;
+            if (performed) 
+            {
+                Calculation();
+            }
+            
         }
+
+        #region Delete
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
 
             int txtLength = displayTextBox.Text.Length;
 
-            if (txtLength > 0)
+            if (txtLength > 0 && displayTextBox.Text!="Can't divide by zero")
             {
                 displayTextBox.Text = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
-                MessageBox.Show(txtLength.ToString());
-                
+                operation_lbl.Text += displayTextBox.Text;
             }
 
             if (displayTextBox.Text == "")
@@ -141,10 +156,23 @@ namespace Calculator
 
         }
 
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            displayTextBox.Text = "0";
+            operation_lbl.Text = "";
+            result = 0;
+        }
+
+        private void clearEntryBtn_Click(object sender, EventArgs e)
+        {
+            displayTextBox.Text = "0";
+            operation_lbl.Text += displayTextBox.Text;
+        }
+#endregion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //displayTextBox.Text = "0";
+            operation_lbl.Text = "";
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -152,15 +180,5 @@ namespace Calculator
             Application.Exit();
         }
 
-        private void clearBtn_Click(object sender, EventArgs e)
-        {
-            displayTextBox.Text = "0";
-            result = 0;
-        }
-
-        private void clearEntryBtn_Click(object sender, EventArgs e)
-        {
-            displayTextBox.Text = "0";
-        }
     }
 }
