@@ -326,6 +326,7 @@
             Controls.Add(button10);
             Controls.Add(button2);
             Controls.Add(button3);
+            ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Form1";
