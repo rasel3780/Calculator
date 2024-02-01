@@ -40,14 +40,29 @@ namespace Calculator
                 if (!displayTextBox.Text.Contains("."))
                 {
                     displayTextBox.Text += btn.Text;
-                    operation_lbl.Text += displayTextBox.Text;
+                    if(performed)
+                    {
+                        operation_lbl.Text += displayTextBox.Text;
+                    }
+                    else
+                    {
+                        operation_lbl.Text = displayTextBox.Text;
+                    }
+                    
                 }
             }
             //concating digits
             else
             {
                 displayTextBox.Text += btn.Text;
-                operation_lbl.Text += displayTextBox.Text;
+                if (performed)
+                {
+                    operation_lbl.Text += displayTextBox.Text;
+                }
+                else
+                {
+                    operation_lbl.Text = displayTextBox.Text;
+                }
             }
         }
         #endregion
@@ -119,12 +134,15 @@ namespace Calculator
                     }
                     else
                     {
-                        displayTextBox.Text = (result / currentInput).ToString();
-                       
+                        displayTextBox.Text = (result / currentInput).ToString();     
                     }
                     
                 }
-                operation_lbl.Text += "=";
+                if(!operation_lbl.Text.Contains("="))
+                {
+                    operation_lbl.Text += "=";
+                }
+                
             }
             catch(Exception ex) 
             {
@@ -133,14 +151,17 @@ namespace Calculator
         }
         #endregion
 
+        #region Equal
         private void equalBtn_Click(object sender, EventArgs e)
         {
             equalClicked = true;
+
             if (performed) 
             {
                 Calculation();
             }    
         }
+        #endregion
 
         #region Delete
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -150,7 +171,6 @@ namespace Calculator
 
             if (txtLength > 0 && displayTextBox.Text!="Can't divide by zero")
             {
-                //MessageBox.Show(displayTextBox.Text);
                 displayTextBox.Text = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
                 operation_lbl.Text = displayTextBox.Text;
             }
