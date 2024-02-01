@@ -7,6 +7,7 @@ namespace Calculator
         double result = 0;
         bool performed = false;
         bool dividedByZero = false;
+        bool equalClicked = false;
         
 
         public Form1()
@@ -18,6 +19,9 @@ namespace Calculator
         private void digits_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
+
+
+
             if (dividedByZero)
             {
                 displayTextBox.Text = "0";
@@ -65,16 +69,18 @@ namespace Calculator
             {
                 displayTextBox.Clear() ;
                 displayTextBox.Text += btn.Text;
+                operation_lbl.Text += btn.Text;
             }
             
             
-            else
+            else if(btn.Text != "/" && btn.Text != "x")
             {
                 operation = btn.Text;
                 result = Convert.ToDouble(displayTextBox.Text);
                 performed = true;
+                operation_lbl.Text += btn.Text;
             }
-            operation_lbl.Text += btn.Text;
+           
 
 
         }
@@ -129,15 +135,14 @@ namespace Calculator
 
         private void equalBtn_Click(object sender, EventArgs e)
         {
+            equalClicked = true;
             if (performed) 
             {
                 Calculation();
-            }
-            
+            }    
         }
 
         #region Delete
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
 
@@ -145,15 +150,15 @@ namespace Calculator
 
             if (txtLength > 0 && displayTextBox.Text!="Can't divide by zero")
             {
+                //MessageBox.Show(displayTextBox.Text);
                 displayTextBox.Text = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
-                operation_lbl.Text += displayTextBox.Text;
+                operation_lbl.Text = displayTextBox.Text;
             }
 
             if (displayTextBox.Text == "")
             {
                 displayTextBox.Text = "0";
             }
-
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
@@ -165,10 +170,11 @@ namespace Calculator
 
         private void clearEntryBtn_Click(object sender, EventArgs e)
         {
-            displayTextBox.Text = "0";
             operation_lbl.Text += displayTextBox.Text;
+            displayTextBox.Text = "0";
+            
         }
-#endregion
+        #endregion
 
         private void Form1_Load(object sender, EventArgs e)
         {
