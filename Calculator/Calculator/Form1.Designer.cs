@@ -49,11 +49,11 @@
             deleteBtn = new Button();
             operation_lbl = new Label();
             clearBtn = new Button();
-            clearEntryBtn = new Button();
             SuspendLayout();
             // 
             // displayTextBox
             // 
+            displayTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             displayTextBox.BackColor = SystemColors.ControlLightLight;
             displayTextBox.BorderStyle = BorderStyle.FixedSingle;
             displayTextBox.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -68,6 +68,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button1.BackColor = Color.GhostWhite;
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button1.Location = new Point(12, 139);
@@ -80,6 +81,7 @@
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button2.BackColor = Color.GhostWhite;
             button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button2.Location = new Point(95, 139);
@@ -92,6 +94,7 @@
             // 
             // button3
             // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button3.BackColor = Color.GhostWhite;
             button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button3.Location = new Point(180, 139);
@@ -104,6 +107,7 @@
             // 
             // button4
             // 
+            button4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button4.BackColor = Color.GhostWhite;
             button4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button4.Location = new Point(12, 204);
@@ -116,6 +120,7 @@
             // 
             // button5
             // 
+            button5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button5.BackColor = Color.GhostWhite;
             button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button5.Location = new Point(95, 204);
@@ -128,6 +133,7 @@
             // 
             // button6
             // 
+            button6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button6.BackColor = Color.GhostWhite;
             button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button6.Location = new Point(180, 204);
@@ -140,6 +146,7 @@
             // 
             // button7
             // 
+            button7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button7.BackColor = Color.GhostWhite;
             button7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button7.Location = new Point(12, 272);
@@ -152,6 +159,7 @@
             // 
             // button8
             // 
+            button8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button8.BackColor = Color.GhostWhite;
             button8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button8.Location = new Point(95, 272);
@@ -164,6 +172,7 @@
             // 
             // button9
             // 
+            button9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button9.BackColor = Color.GhostWhite;
             button9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button9.Location = new Point(180, 272);
@@ -176,6 +185,7 @@
             // 
             // button10
             // 
+            button10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button10.BackColor = Color.GhostWhite;
             button10.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button10.Location = new Point(12, 339);
@@ -188,6 +198,7 @@
             // 
             // button11
             // 
+            button11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button11.BackColor = Color.GhostWhite;
             button11.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button11.Location = new Point(95, 339);
@@ -200,6 +211,7 @@
             // 
             // button12
             // 
+            button12.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button12.BackColor = Color.GhostWhite;
             button12.Font = new Font("Microsoft YaHei UI", 12F);
             button12.Location = new Point(260, 141);
@@ -212,6 +224,7 @@
             // 
             // button13
             // 
+            button13.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button13.BackColor = Color.GhostWhite;
             button13.Font = new Font("Microsoft YaHei UI", 12F);
             button13.Location = new Point(260, 206);
@@ -224,6 +237,7 @@
             // 
             // button14
             // 
+            button14.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button14.BackColor = Color.GhostWhite;
             button14.Font = new Font("Microsoft YaHei UI", 12F);
             button14.Location = new Point(330, 141);
@@ -236,6 +250,7 @@
             // 
             // button15
             // 
+            button15.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button15.BackColor = Color.GhostWhite;
             button15.Font = new Font("Microsoft YaHei UI", 12F);
             button15.Location = new Point(330, 206);
@@ -248,6 +263,7 @@
             // 
             // equalBtn
             // 
+            equalBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             equalBtn.BackColor = Color.GhostWhite;
             equalBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             equalBtn.Location = new Point(180, 339);
@@ -260,6 +276,7 @@
             // 
             // deleteBtn
             // 
+            deleteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             deleteBtn.BackColor = Color.GhostWhite;
             deleteBtn.Font = new Font("Microsoft YaHei UI", 12F);
             deleteBtn.Image = (Image)resources.GetObject("deleteBtn.Image");
@@ -280,23 +297,14 @@
             // 
             // clearBtn
             // 
-            clearBtn.Location = new Point(260, 339);
+            clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            clearBtn.Location = new Point(260, 272);
             clearBtn.Name = "clearBtn";
             clearBtn.Size = new Size(64, 48);
             clearBtn.TabIndex = 3;
             clearBtn.Text = "C";
             clearBtn.UseVisualStyleBackColor = true;
             clearBtn.Click += clearBtn_Click;
-            // 
-            // clearEntryBtn
-            // 
-            clearEntryBtn.Location = new Point(330, 339);
-            clearEntryBtn.Name = "clearEntryBtn";
-            clearEntryBtn.Size = new Size(64, 48);
-            clearEntryBtn.TabIndex = 3;
-            clearEntryBtn.Text = "CE";
-            clearEntryBtn.UseVisualStyleBackColor = true;
-            clearEntryBtn.Click += clearEntryBtn_Click;
             // 
             // Form1
             // 
@@ -305,7 +313,6 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(406, 429);
-            Controls.Add(clearEntryBtn);
             Controls.Add(clearBtn);
             Controls.Add(operation_lbl);
             Controls.Add(equalBtn);
@@ -360,6 +367,5 @@
         private Button deleteBtn;
         private Label operation_lbl;
         private Button clearBtn;
-        private Button clearEntryBtn;
     }
 }
