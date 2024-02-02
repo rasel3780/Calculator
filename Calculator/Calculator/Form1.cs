@@ -96,7 +96,7 @@ namespace Calculator
                 return false;
 
             char lastChar = input[input.Length - 1];
-            return (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/');
+            return (lastChar == '+' || lastChar == '-' || lastChar == 'x' || lastChar == '/');
         }
 
         #region Equal
@@ -104,10 +104,12 @@ namespace Calculator
         {
             try
             {
-                if(input.StartsWith('-'))
+                if (input.StartsWith('-'))
                 {
-                    
+                    input = input.Substring(1, input.Length - 1);
+                    isMinus = true;
                 }
+
                 string displayString = input.ToString();
                 bool plus = displayString.Contains("+");
                 bool minus = displayString.Contains("-");
@@ -116,7 +118,7 @@ namespace Calculator
                 bool zeroProblem = false;
 
                 string[] inputArr = new string[3];
-
+                
                 if(plus)
                 {
                     inputArr = displayString.Split('+');
@@ -127,15 +129,26 @@ namespace Calculator
                 }
                 else if(minus)
                 {
+                    
+
                     inputArr = displayString.Split('-');
-                    number1 = Convert.ToDouble(inputArr[0]);
+                    if(isMinus)
+                    {
+                        double positiveNumber = Convert.ToDouble(inputArr[0]);
+                        number1 = -positiveNumber;
+                        isMinus = false;
+                    }
+                    else
+                    {
+                        number1 = Convert.ToDouble(inputArr[0]);
+                    }
                     number2 = Convert.ToDouble(inputArr[1]);
                     result = number1 - number2;
 
                 }
                 else if(multi)
                 {
-                    inputArr = displayString.Split('*');
+                    inputArr = displayString.Split('x');
                     number1 = Convert.ToDouble(inputArr[0]);
                     number2 = Convert.ToDouble(inputArr[1]);
                     result = number1 * number2;
