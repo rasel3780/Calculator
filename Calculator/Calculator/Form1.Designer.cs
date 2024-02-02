@@ -47,7 +47,6 @@
             button15 = new Button();
             equalBtn = new Button();
             deleteBtn = new Button();
-            operation_lbl = new Label();
             clearBtn = new Button();
             SuspendLayout();
             // 
@@ -61,7 +60,7 @@
             displayTextBox.Multiline = true;
             displayTextBox.Name = "displayTextBox";
             displayTextBox.ReadOnly = true;
-            displayTextBox.Size = new Size(383, 107);
+            displayTextBox.Size = new Size(382, 107);
             displayTextBox.TabIndex = 0;
             displayTextBox.Text = "0";
             displayTextBox.TextAlign = HorizontalAlignment.Right;
@@ -287,14 +286,6 @@
             deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
             // 
-            // operation_lbl
-            // 
-            operation_lbl.AutoSize = true;
-            operation_lbl.Location = new Point(16, 15);
-            operation_lbl.Name = "operation_lbl";
-            operation_lbl.Size = new Size(0, 20);
-            operation_lbl.TabIndex = 2;
-            // 
             // clearBtn
             // 
             clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -314,7 +305,6 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(406, 429);
             Controls.Add(clearBtn);
-            Controls.Add(operation_lbl);
             Controls.Add(equalBtn);
             Controls.Add(displayTextBox);
             Controls.Add(button9);
@@ -365,7 +355,6 @@
         private Button button15;
         private Button equalBtn;
         private Button deleteBtn;
-        private Label operation_lbl;
         private Button clearBtn;
     }
 }

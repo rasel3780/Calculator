@@ -1,5 +1,6 @@
 using System.Data;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace Calculator
 {
@@ -9,9 +10,10 @@ namespace Calculator
         double result = 0;
         string divZeroError = "Can't divide by zero";
         string undefinedError = "Result is undefined";
-
         string input = string.Empty;
         string operation = string.Empty;
+        bool isMinus = false;
+        bool isFloat = false;
 
         public Form1()
         {
@@ -20,7 +22,7 @@ namespace Calculator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            operation_lbl.Text = string.Empty;
+            
         }
 
         #region Digits
@@ -28,8 +30,23 @@ namespace Calculator
         {
             
             Button btn = (Button)sender;
-            input += btn.Text;
-            displayTextBox.Text = input;
+
+            if (btn.Text==".")
+            {
+                if (!isFloat)
+                {
+                    input += ".";
+                    displayTextBox.Text = input;
+                    isFloat = true;
+                }
+            }
+           
+            else
+            {
+                input += btn.Text;
+                displayTextBox.Text = input;
+            }
+            
             
 
         }
@@ -38,15 +55,28 @@ namespace Calculator
         #region Operators
         private void operator_click(object sender, EventArgs e)
         {
-        
-            
+
             Button btn = (Button)sender;
+
+            if(displayTextBox.Text==divZeroError || displayTextBox.Text==undefinedError) 
+            {
+                displayTextBox.Clear();    
+            }
+
+            if (displayTextBox.Text == "0" && btn.Text=="-")
+            {
+                displayTextBox.Clear();
+                input += btn.Text;
+                displayTextBox.Text = input;
+                isMinus = true;
+            }
 
             if (!string.IsNullOrEmpty(input) && !IsLastCharOperator())
             {
                 operation = btn.Text;
                 input += operation;
                 displayTextBox.Text = input;
+                isFloat = false;
             }
           
             else if (IsLastCharOperator())
@@ -54,6 +84,7 @@ namespace Calculator
                 input = input.Substring(0, input.Length - 1) + btn.Text;
                 operation = btn.Text;
                 displayTextBox.Text = input;
+                isFloat = false;
             }
 
         }
@@ -68,22 +99,15 @@ namespace Calculator
             return (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/');
         }
 
-        #region Calculation
-        private void Calculation()
-        {
-            //if(operation=='+')
-            //{
-            //    result = number1+
-            //}
-            
-        }
-        #endregion
-
         #region Equal
         private void equalBtn_Click(object sender, EventArgs e)
         {
             try
             {
+                if(input.StartsWith('-'))
+                {
+                    
+                }
                 string displayString = input.ToString();
                 bool plus = displayString.Contains("+");
                 bool minus = displayString.Contains("-");
@@ -144,6 +168,7 @@ namespace Calculator
                     displayTextBox.Text = result.ToString();
                     input = result.ToString();
                 }
+                isFloat = false;
                 
             }
             catch (Exception ex)
@@ -153,6 +178,7 @@ namespace Calculator
         }
         #endregion
 
+
         #region Delete
         private void deleteBtn_Click(object sender, EventArgs e)
         {
@@ -161,8 +187,9 @@ namespace Calculator
 
             if (txtLength > 0 && displayTextBox.Text!="Can't divide by zero")
             {
-                displayTextBox.Text = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
-                operation_lbl.Text = displayTextBox.Text;
+                input = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
+                displayTextBox.Text = input.ToString();
+ 
             }
 
             if (displayTextBox.Text == "")
@@ -170,7 +197,8 @@ namespace Calculator
                 displayTextBox.Text = "0";
                 //performed= false;
                 result = 0;
-                operation_lbl.Text = string.Empty;
+                input = string.Empty;
+                
             }
         }
 
@@ -179,11 +207,10 @@ namespace Calculator
             
             input = string.Empty;
             operation = string.Empty;
-            displayTextBox.Text = string.Empty;
+            displayTextBox.Text = "0";
         }
         #endregion
 
-        
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
