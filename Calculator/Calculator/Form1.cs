@@ -12,6 +12,7 @@ namespace Calculator
         string undefinedError = "Result is undefined";
         string input = string.Empty;
         string operation = string.Empty;
+        char option;
         bool isMinus = false;
         bool isFloat = false;
 
@@ -22,16 +23,16 @@ namespace Calculator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        #region Digits
+        #region Digits Button 
         private void digits_click(object sender, EventArgs e)
         {
-            
+
             Button btn = (Button)sender;
 
-            if (btn.Text==".")
+            if (btn.Text == ".")
             {
                 if (!isFloat)
                 {
@@ -40,30 +41,27 @@ namespace Calculator
                     isFloat = true;
                 }
             }
-           
+
             else
             {
                 input += btn.Text;
                 displayTextBox.Text = input;
             }
-            
-            
-
         }
         #endregion
 
-        #region Operators
+        #region Operators Button
         private void operator_click(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
 
-            if(displayTextBox.Text==divZeroError || displayTextBox.Text==undefinedError) 
+            if (displayTextBox.Text == divZeroError || displayTextBox.Text == undefinedError)
             {
-                displayTextBox.Clear();    
+                displayTextBox.Clear();
             }
 
-            if (displayTextBox.Text == "0" && btn.Text=="-")
+            if (displayTextBox.Text == "0" && btn.Text == "-")
             {
                 displayTextBox.Clear();
                 input += btn.Text;
@@ -78,7 +76,7 @@ namespace Calculator
                 displayTextBox.Text = input;
                 isFloat = false;
             }
-          
+
             else if (IsLastCharOperator())
             {
                 input = input.Substring(0, input.Length - 1) + btn.Text;
@@ -86,10 +84,78 @@ namespace Calculator
                 displayTextBox.Text = input;
                 isFloat = false;
             }
+        }
+        #endregion
+        #region Calculation
+
+        private void Calculation(char option)
+        {
+            try
+            {
+
+                bool zeroProblem = false;
+                string displayString = input.ToString();
+                string[] inputArr = new string[5];
+
+
+                inputArr = displayString.Split(option);
+                number1 = Convert.ToDouble(inputArr[0]);
+                number2 = Convert.ToDouble(inputArr[1]);
+                if (isMinus)
+                {
+                    double positiveNumber = Convert.ToDouble(inputArr[0]);
+                    number1 = -positiveNumber;
+                    isMinus = false;
+                }
+                else
+                {
+                    number1 = Convert.ToDouble(inputArr[0]);
+                }
+                number2 = Convert.ToDouble(inputArr[1]);
+
+                if (option == '+')
+                {
+                    result = number1 + number2;
+                }
+                else if (option == '-')
+                {
+                    result = number1 - number2;
+                }
+                else if (option == 'x')
+                {
+                    result = number1 * number2;
+                }
+                else if (option == '/')
+                {
+                    if (number1 == 0 && number2 == 0)
+                    {
+                        displayTextBox.Text = undefinedError;
+                        zeroProblem = true;
+                    }
+                    else if (number2 == 0)
+                    {
+                        displayTextBox.Text = divZeroError;
+                        zeroProblem = true;
+                    }
+                    else
+                    {
+                        result = number1 / number2;
+                    }
+                }
+
+                if (!zeroProblem)
+                {
+                    displayTextBox.Text = result.ToString();
+                    input = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                displayTextBox.Text = ex.Message;
+            }
 
         }
         #endregion
-
         private bool IsLastCharOperator()
         {
             if (string.IsNullOrEmpty(input))
@@ -102,92 +168,44 @@ namespace Calculator
         #region Equal
         private void equalBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (input.StartsWith('-'))
             {
-                if (input.StartsWith('-'))
-                {
-                    input = input.Substring(1, input.Length - 1);
-                    isMinus = true;
-                }
-
-                string displayString = input.ToString();
-                bool plus = displayString.Contains("+");
-                bool minus = displayString.Contains("-");
-                bool multi = displayString.Contains("x");
-                bool divi = displayString.Contains("/");
-                bool zeroProblem = false;
-
-                string[] inputArr = new string[3];
-                
-                if(plus)
-                {
-                    inputArr = displayString.Split('+');
-                    number1 = Convert.ToDouble(inputArr[0]);
-                    number2 = Convert.ToDouble(inputArr[1]);  
-                    result = number1+number2;
- 
-                }
-                else if(minus)
-                {
-                    
-
-                    inputArr = displayString.Split('-');
-                    if(isMinus)
-                    {
-                        double positiveNumber = Convert.ToDouble(inputArr[0]);
-                        number1 = -positiveNumber;
-                        isMinus = false;
-                    }
-                    else
-                    {
-                        number1 = Convert.ToDouble(inputArr[0]);
-                    }
-                    number2 = Convert.ToDouble(inputArr[1]);
-                    result = number1 - number2;
-
-                }
-                else if(multi)
-                {
-                    inputArr = displayString.Split('x');
-                    number1 = Convert.ToDouble(inputArr[0]);
-                    number2 = Convert.ToDouble(inputArr[1]);
-                    result = number1 * number2;
-
-                }
-                else if(divi)
-                {
-                    inputArr = displayString.Split('/');
-                    number1 = Convert.ToDouble(inputArr[0]);
-                    number2 = Convert.ToDouble(inputArr[1]);
-                    if(number1==0 && number2==0)
-                    {
-                        displayTextBox.Text = undefinedError;
-                        zeroProblem = true;
-                    }
-                    else if(number2==0) 
-                    {
-                        displayTextBox.Text = divZeroError;
-                        zeroProblem = true;
-                    }
-                    else
-                    {
-                        result = number1 / number2;
-                    }
-                    
-                }
-
-                if(!zeroProblem)
-                {
-                    displayTextBox.Text = result.ToString();
-                    input = result.ToString();
-                }
-                isFloat = false;
-                
+                input = input.Substring(1, input.Length - 1);
+                isMinus = true;
             }
-            catch (Exception ex)
+
+            string inputString = input.ToString();
+
+            if (inputString.Contains("+"))
             {
-                displayTextBox.Text = ex.Message.ToString();
+                option = '+';
+                Calculation(option);
+
+
             }
+            else if (inputString.Contains("-"))
+            {
+
+                option = '-';
+                Calculation(option);
+
+            }
+            else if (inputString.Contains("x"))
+            {
+                option = 'x';
+                Calculation(option);
+
+            }
+
+            else if (inputString.Contains("/"))
+            {
+                option = '/';
+                Calculation(option);
+
+
+
+            }
+            isFloat = false;
         }
         #endregion
 
@@ -198,26 +216,24 @@ namespace Calculator
 
             int txtLength = displayTextBox.Text.Length;
 
-            if (txtLength > 0 && displayTextBox.Text!="Can't divide by zero")
+            if (txtLength > 0 && displayTextBox.Text != "Can't divide by zero")
             {
                 input = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
                 displayTextBox.Text = input.ToString();
- 
+
             }
 
             if (displayTextBox.Text == "")
             {
                 displayTextBox.Text = "0";
-                //performed= false;
                 result = 0;
                 input = string.Empty;
-                
             }
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
-            
+
             input = string.Empty;
             operation = string.Empty;
             displayTextBox.Text = "0";
@@ -229,6 +245,5 @@ namespace Calculator
         {
             Application.Exit();
         }
-
     }
 }
