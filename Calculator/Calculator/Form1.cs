@@ -2,6 +2,7 @@ using System.Data;
 using System.DirectoryServices.ActiveDirectory;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Web;
 
 namespace Calculator
 {
@@ -17,9 +18,6 @@ namespace Calculator
         bool isMinus = false;
         bool isFloat = false;
 
-        bool num1Flag = false;
-        bool num2Flag = false;
-        bool perfomedFlag = false;
 
         public Form1()
         {
@@ -83,21 +81,31 @@ namespace Calculator
                 displayTextBox.Text = input;
                 isMinus = true;
             }
-
-            if (!string.IsNullOrEmpty(input) && !IsLastCharOperator())
+            int minusCnt = 0;
+            string minusÍnString = displayTextBox.Text.ToString();
+            foreach (char c in minusÍnString) 
             {
-                operation = btn.Text;
-                input += operation;
-                displayTextBox.Text = input;
-                isFloat = false;
+                if(c=='-') 
+                {
+                    minusCnt++;
+                }
             }
-
-            else if (IsLastCharOperator())
+          
+            if(!displayTextBox.Text.Contains('+') && !displayTextBox.Text.Contains('x')
+                && !displayTextBox.Text.Contains('/') && (minusCnt<1 || isMinus)) 
             {
-                input = input.Substring(0, input.Length - 1) + btn.Text;
-                operation = btn.Text;
-                displayTextBox.Text = input;
-                isFloat = false;
+                
+
+                if (!string.IsNullOrEmpty(input) && !IsLastCharOperator())
+                {
+                    operation = btn.Text;
+                    input += operation;
+                    displayTextBox.Text = input;
+                    isFloat = false;
+                    isMinus = false;
+                }
+
+                
             }
 
 
@@ -239,16 +247,9 @@ namespace Calculator
 
             if (txtLength > 0 && displayTextBox.Text != "Can't divide by zero")
             {
-                char lastCharOperator = displayTextBox.Text[displayTextBox.Text.Length - 1];
+               
                 input = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
-
-                if (lastCharOperator == '+' || lastCharOperator == '-'
-                    || lastCharOperator == 'x' || lastCharOperator == '/')
-                {
-
-                }
                 displayTextBox.Text = input.ToString();
-
             }
 
             if (displayTextBox.Text == "")
