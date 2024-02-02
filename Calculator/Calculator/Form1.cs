@@ -1,4 +1,5 @@
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Net;
 using System.Runtime.CompilerServices;
 
@@ -16,6 +17,10 @@ namespace Calculator
         bool isMinus = false;
         bool isFloat = false;
 
+        bool num1Flag = false;
+        bool num2Flag = false;
+        bool perfomedFlag = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,12 +30,25 @@ namespace Calculator
         {
 
         }
+        private void msgClear()
+        {
+            if (displayTextBox.Text == divZeroError || displayTextBox.Text == undefinedError)
+            {
+                displayTextBox.Clear();
+                input = string.Empty;
+                operation = string.Empty;
+                result = 0;
+            }
+
+        }
 
         #region Digits Button 
         private void digits_click(object sender, EventArgs e)
         {
 
             Button btn = (Button)sender;
+
+            msgClear();
 
             if (btn.Text == ".")
             {
@@ -56,10 +74,7 @@ namespace Calculator
 
             Button btn = (Button)sender;
 
-            if (displayTextBox.Text == divZeroError || displayTextBox.Text == undefinedError)
-            {
-                displayTextBox.Clear();
-            }
+            msgClear();
 
             if (displayTextBox.Text == "0" && btn.Text == "-")
             {
@@ -84,70 +99,76 @@ namespace Calculator
                 displayTextBox.Text = input;
                 isFloat = false;
             }
+
+
         }
         #endregion
-        #region Calculation
 
+        #region Calculation
         private void Calculation(char option)
         {
             try
             {
 
                 bool zeroProblem = false;
-                string displayString = input.ToString();
                 string[] inputArr = new string[5];
 
-
+                string displayString = input.ToString();
                 inputArr = displayString.Split(option);
-                number1 = Convert.ToDouble(inputArr[0]);
-                number2 = Convert.ToDouble(inputArr[1]);
-                if (isMinus)
-                {
-                    double positiveNumber = Convert.ToDouble(inputArr[0]);
-                    number1 = -positiveNumber;
-                    isMinus = false;
-                }
-                else
+
+                if (inputArr[1] != "")
                 {
                     number1 = Convert.ToDouble(inputArr[0]);
-                }
-                number2 = Convert.ToDouble(inputArr[1]);
-
-                if (option == '+')
-                {
-                    result = number1 + number2;
-                }
-                else if (option == '-')
-                {
-                    result = number1 - number2;
-                }
-                else if (option == 'x')
-                {
-                    result = number1 * number2;
-                }
-                else if (option == '/')
-                {
-                    if (number1 == 0 && number2 == 0)
+                    number2 = Convert.ToDouble(inputArr[1]);
+                    if (isMinus)
                     {
-                        displayTextBox.Text = undefinedError;
-                        zeroProblem = true;
-                    }
-                    else if (number2 == 0)
-                    {
-                        displayTextBox.Text = divZeroError;
-                        zeroProblem = true;
+                        double positiveNumber = Convert.ToDouble(inputArr[0]);
+                        number1 = -positiveNumber;
+                        isMinus = false;
                     }
                     else
                     {
-                        result = number1 / number2;
+                        number1 = Convert.ToDouble(inputArr[0]);
+                    }
+                    number2 = Convert.ToDouble(inputArr[1]);
+
+                    if (option == '+')
+                    {
+                        result = number1 + number2;
+                    }
+                    else if (option == '-')
+                    {
+                        result = number1 - number2;
+                    }
+                    else if (option == 'x')
+                    {
+                        result = number1 * number2;
+                    }
+                    else if (option == '/')
+                    {
+                        if (number1 == 0 && number2 == 0)
+                        {
+                            displayTextBox.Text = undefinedError;
+                            zeroProblem = true;
+                        }
+                        else if (number2 == 0)
+                        {
+                            displayTextBox.Text = divZeroError;
+                            zeroProblem = true;
+                        }
+                        else
+                        {
+                            result = number1 / number2;
+                        }
+                    }
+
+                    if (!zeroProblem)
+                    {
+                        displayTextBox.Text = result.ToString();
+                        input = result.ToString();
                     }
                 }
 
-                if (!zeroProblem)
-                {
-                    displayTextBox.Text = result.ToString();
-                    input = result.ToString();
-                }
             }
             catch (Exception ex)
             {
@@ -218,7 +239,14 @@ namespace Calculator
 
             if (txtLength > 0 && displayTextBox.Text != "Can't divide by zero")
             {
+                char lastCharOperator = displayTextBox.Text[displayTextBox.Text.Length - 1];
                 input = displayTextBox.Text.Remove(displayTextBox.Text.Length - 1, 1);
+
+                if (lastCharOperator == '+' || lastCharOperator == '-'
+                    || lastCharOperator == 'x' || lastCharOperator == '/')
+                {
+
+                }
                 displayTextBox.Text = input.ToString();
 
             }
@@ -237,6 +265,7 @@ namespace Calculator
             input = string.Empty;
             operation = string.Empty;
             displayTextBox.Text = "0";
+
         }
         #endregion
 
