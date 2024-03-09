@@ -2,6 +2,6 @@
 
 Developed by: Rasel Kibria
 
-This is a simple calculator application created for ASP.NET Core Career Track class Assignment.
+This is a simple calculator desktop application developed by using .NET Windows Forms App
 
 
